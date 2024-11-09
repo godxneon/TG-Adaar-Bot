@@ -13,7 +13,7 @@ async def get_bot_uptime():
     uptime_days = uptime_hours // 24
     uptime_weeks = uptime_days // 7
     ###############################
-    uptime_string = f"{uptime_days % 7}Days:{uptime_hours % 24}Hours:{uptime_minutes % 60}Minutes:{uptime_seconds % 60}Seconds"
+    uptime_string = f"{uptime_days % 7} Days:{uptime_hours % 24} Hours:{uptime_minutes % 60} Minutes:{uptime_seconds % 60} Seconds"
     return uptime_string
 
 @Client.on_message(filters.command("ping")) 
