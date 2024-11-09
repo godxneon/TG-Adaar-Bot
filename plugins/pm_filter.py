@@ -1045,7 +1045,7 @@ async def advantage_spell_chok(msg):
             ]]        
         k = await msg.reply_photo(
             photo=SPELL_IMG, 
-            caption=script.SPEL_CHK.format(msg.from_user.mention)            
+            caption=script.SPEL_CHK.format(msg.from_user.mention),        
             reply_markup=InlineKeyboardMarkup(button),
             reply_to_message_id=msg.id
         )                                           
