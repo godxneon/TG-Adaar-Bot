@@ -6,7 +6,7 @@ import random
 import pytz
 import datetime
 import time
-import shutil, sys
+import psutil, shutil, sys
 lock = asyncio.Lock()
 
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
@@ -58,11 +58,13 @@ async def pm_text(bot, message):
              InlineKeyboardButton("📝 Movie Search Group 3️⃣", url=f"https://t.me/KLMovieGroupTG")]]))
     
               
-@Client.on_message((filters.group | filters.private) & filters.text & filters.incoming)
+@Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
-    k = await global_filters(client, message)
-    if k == False:
-        await auto_filter(client, message)
+        glob = await global_filters(client, message)
+        if glob == False:
+#            manual = await manual_filters(client, message)
+ #           if manual == False:
+               await auto_filter(client, message)
 
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
@@ -1027,7 +1029,7 @@ async def auto_filter(client, msg, spoll=False):
     if spoll:
         await msg.message.delete()       
 
-async def advantage_spell_chok(msg):
+async def advantage_spell_chok(client, msg):
     mv_id = msg.id
     mv_rqst = msg.text
     reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -1050,7 +1052,7 @@ async def advantage_spell_chok(msg):
             reply_to_message_id=msg.id
         )                                           
         await msg.delete()
-        await asyncio.sleep(17)
+        await asyncio.sleep(23)
         await k.delete()      
         return
    
